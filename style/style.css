@@ -1,0 +1,144 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+section {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: block;
+  background-color: #003049;
+  color: white;
+  padding: 1px 0px;
+  width: 100%;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+td,
+th {
+  font-size: 1.3em;
+  padding: 8px;
+  text-align: left;
+  font-weight: 700;
+}
+img {
+  width: 100%;
+  max-width: 70px;
+  min-height: 70px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+figure img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  object-fit: cover;
+}
+
+form fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border: none;
+}
+
+form input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+footer {
+  display: flex;
+  justify-content: space-evenly; /* Equal spacing between buttons */
+  align-items: center;
+  padding: 5px 0;
+  background-color: #003049;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000; /* Stay on top of content */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+footer button {
+  all: unset;
+  cursor: pointer;
+  font-size: 22px; /* Icon size */
+  color: white;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* Optional hover effect */
+footer button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+button:focus {
+  outline: 2px solid #ffffff; /* or any color that stands out */
+  outline-offset: 2px;
+  border-radius: 5px; /* optional: match your design */
+}
+
+button {
+  background-color: #669bbc;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+}

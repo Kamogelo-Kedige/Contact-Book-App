@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="style/style.css">
+
+    <!-- Font Awesome icons -->
+    <script src="https://kit.fontawesome.com/1626dc2da5.js" crossorigin="anonymous"></script>
+    <title>Add Contact</title>
+</head>
+
+<body>
+
+    <!-- Page header -->
+    <header>
+        <h1>Contact Book</h1>
+    </header>
+
+    <main>
+        <section>
+            <!-- Contact form for adding a new contact -->
+            <form id="editForm" action="">
+                <fieldset>
+                    <!-- First Name input -->
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname" id="firstname">
+
+                    <!-- Last Name input -->
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname" id="lastname">
+
+                    <!-- Phone input -->
+                    <label for="tel">Phone</label>
+                    <input type="tel" name="mobile" id="mobile">
+
+                    <!-- Email input -->
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email">
+
+                    <!-- Avatar file input -->
+                    <label for="avatar">Select File</label>
+                    <input type="file" name="avatar" id="avatar">
+                </fieldset>
+            </form>
+            <!-- Submit button (outside the form, triggers form submission via JS) -->
+            <button type="submit" id="submitForm">Submit</button>
+            <br>
+        </section>
+    </main>
+
+    <!-- Footer with home button -->
+    <footer>
+        <button type="button" id="homeLink"><i class="fa-solid fa-house-chimney"></i></button>
+    </footer>
+
+    <!-- External configuration script -->
+    <script src="javascript/config.js"></script>
+    <script>
+        // Add event listeners for submit and home buttons
+        document.getElementById("submitForm").addEventListener('click', submitForm);
+        document.getElementById("homeLink").addEventListener('click', homeLink);
+
+        // Handles form submission
+        function submitForm(e) {
+            e.preventDefault(); // Prevent default form submission (page reload)
+
+            // Collect form data
+            const form = new FormData(document.querySelector('#editForm'));
+
+            // Append API key to form data
+            form.append('apiKey', apiKey);
+
+            // Send form data to server using fetch API
+            fetch(rootPath + 'controller/insert-contact/', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json, *.*' },
+                body: form
+            })
+                .then(function (response) {
+                    return response.text();
+                })
+                .then(function (data) {
+                    if (data == "1") {
+                        alert("Contact Added");
+                        // Redirect to homepage on success
+                        homeLink();
+                    } else {
+                        alert(data);
+                        // Redirect to homepage on failure
+                        homeLink();
+                    }
+                })
+        }
+
+        // Redirects to the homepage
+        function homeLink() {
+            window.open("index.html", "_self");
+        }
+    </script>
+
+</body>
+
+</html>

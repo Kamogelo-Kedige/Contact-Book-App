@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Key</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style.css">
+    <!-- Font Awesome icons -->
+    <script src="https://kit.fontawesome.com/1626dc2da5.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <header>
+        <h1>Contact Book</h1>
+    </header>
+
+    <main>
+
+        <section>
+            Please enter a valid API key.
+            <form>
+                <fieldset>
+
+                    <input type="email" id="apiKey" name="apiKey" />
+
+
+                </fieldset>
+
+            </form>
+            <button id="submitApiKey">Submit</button>
+
+        </section>
+
+    </main>
+
+    <!-- Footer with home button -->
+    <footer>
+        <button type="button" id="homeLink"><i class="fa-solid fa-house-chimney"></i></button>
+    </footer>
+
+    <script>
+        document.getElementById("homeLink").addEventListener('click', homeLink);
+
+
+        let rootPath = "https://mysite.itvarsity.org/api/ContactBook/";
+        document.getElementById("submitApiKey").addEventListener('click', setApiKey);
+
+        function setApiKey(e) {
+            e.preventDefault();
+
+            apiKey = document.getElementById("apiKey").value;
+            fetch(rootPath + "controller/api-key/?apiKey=" + apiKey)
+                .then(function (response) {
+                    return response.text();
+                })
+                .then(function (data) {
+
+                    if (data == "1") {
+                        localStorage.setItem("apiKey", apiKey);
+                        window.open("index.html", "_self");
+                    } else {
+                        alert(data + "Invalid API key entered!");
+                    }
+                })
+        }
+
+
+        function homeLink() {
+            window.open("index.html", "_self");
+        }
+
+
+
+    </script>
+</body>
+
+</html>

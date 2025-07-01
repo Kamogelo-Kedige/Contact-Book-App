@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style/style.css">
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/1626dc2da5.js" crossorigin="anonymous"></script>
+
+    <title>Contacts App</title>
+</head>
+
+<body onload="fetchContacts()"> <!-- Fetch contacts when the page loads -->
+
+    <header>
+        <h1>Contact Book</h1>
+    </header>
+
+    <main>
+        <!-- Section where contacts table will be displayed -->
+        <section id="table"> Contacts loading... </section>
+    </main>
+
+    <footer>
+        <!-- Refresh button -->
+        <button id="refresh" type="button" title="Refresh Contacts">
+            <i id="refreshIcon" class="fa-solid fa-arrows-rotate "></i>
+        </button>
+        <!-- Add contact button -->
+        <button id="addContact" type="button" title="Add Contact">
+            <i class="fa-solid fa-user-plus"></i>
+        </button>
+    </footer>
+
+    <!-- Configuration file (e.g., rootPath variable) -->
+    <script src="javascript/config.js"></script>
+
+    <script>
+        // Add event listeners for refresh and add contact buttons
+        document.getElementById("refresh").addEventListener('click', fetchContacts);
+        document.getElementById("addContact").addEventListener('click', addContact);
+
+        // Fetch contacts from the server and display them
+        function fetchContacts() {
+            const icon = document.getElementById("refreshIcon");
+            icon.classList.add("fa-spin"); // Start spinning the refresh icon
+
+            fetch(rootPath + "controller/get-contacts/")
+                .then(function (response) {
+                    return response.json(); // Parse JSON response
+                })
+                .then(function (data) {
+                    displayOutput(data); // Display contacts in the table
+                })
+                .catch(function (error) {
+                    console.error("Error fetching contacts:", error); // Log errors
+                })
+                .finally(function () {
+                    // Ensure the icon spins for at least 1 second
+                    const start = Date.now();
+                    const elapsed = Date.now() - start;
+                    const delay = Math.max(1000 - elapsed, 0);
+
+                    setTimeout(function () {
+                        icon.classList.remove("fa-spin"); // Stop spinning the icon
+                    }, delay);
+                });
+        }
+
+        // Display contacts in a table
+        function displayOutput(data) {
+            output = "<table>";
+
+            for (a in data) {
+                output += `
+                    <tr title="edit contact" onclick="editContact(${data[a].id})">
+                        <td> <img src="${rootPath}controller/uploads/${data[a].avatar}"  /> </td>
+                        <td> <h5>${data[a].firstname}</td>
+                        <td> <h5>${data[a].lastname}</td>
+                    </tr>
+                    `
+            }
+
+            output += "</table>";
+            document.getElementById("table").innerHTML = output; // Update the table section
+        }
+
+        // Open add contact page
+        function addContact() {
+            window.open("addContact.html", "_self");
+        }
+
+        // Open edit contact page with the selected contact's ID
+        function editContact(id) {
+            window.open("editContact.html?id=" + id, "_self");
+        }
+
+    </script>
+
+</body>
+
+</html>
