@@ -23,7 +23,7 @@ section {
 
 header {
   display: block;
-  background-color: #003049;
+  background-color: #3a606e;
   color: white;
   padding: 1px 0px;
   width: 100%;
@@ -99,7 +99,7 @@ footer {
   justify-content: space-evenly; /* Equal spacing between buttons */
   align-items: center;
   padding: 5px 0;
-  background-color: #003049;
+  background-color: #3a606e;
   color: white;
   position: fixed;
   bottom: 0;
