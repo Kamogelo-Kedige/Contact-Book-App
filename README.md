@@ -11,7 +11,7 @@
 - 🧠 Data Persistence – Powered by a simple API to keep data consistent
 
 ## 🔗 Live Demo
-[View Contact Book App](https://kamogelo-kedige.github.io/My-Calculator-App/)
+[View Contact Book App](https://kamogelo-kedige.github.io/Contact-Book-App/)
 
 
 ## 📄 License  
