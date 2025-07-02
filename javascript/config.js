@@ -7,5 +7,3 @@ function checkApiKey() {
   }
   return localStorage.getItem("apiKey");
 }
-
-const API_KEY = "appacademy@itvarsity.org";
